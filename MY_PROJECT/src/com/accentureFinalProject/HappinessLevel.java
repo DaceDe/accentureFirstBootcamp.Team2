@@ -1,8 +1,8 @@
 package com.accentureFinalProject;
 
 public class HappinessLevel {
-	public int maxHappiness;
-	public int minHappiness;
+	public static final int maxHappiness = 100;
+	public static final int minHappiness = 0;
 	public int happinessLevel;
 
 	public int icreaseHappiness(int number) {

@@ -118,30 +118,29 @@ public class Animals {
 
 	}
 
-	public void putAsleep() {
-		if (isAsleep) {
-			System.out.println(name + " is sleeping! Be quiet!");
-		} else {
-			System.out.println(name + " is awake! Hurray!");
-		}
-
-	}
-
 	public int increaseFoodAmount(int foodAmmount) {
 		dailyFoodAmount = dailyFoodAmount + foodAmmount;
 		return dailyFoodAmount;
 	}
 
 	public void hungry() {
+		
 
 	}
 
-	private String getGenderString() {
+	public String getGenderString() {
 		return gender == Gender.female ? "FEMALE" : "MALE";
 	}
 
+	public String getIsAsleepString() {
+		return isAsleep == IsAsleep.awake ? "Awake" : "Is sleeping";
+	}
+
+	@Override
 	public String toString() {
-		return "Animal(Gender=" + getGenderString() + ")";
+		return "Animals [name =" + name + ", habitat = " + habitat + ", hungry = " + hungry + ", dailyFoodAmount = "
+				+ dailyFoodAmount + ", required Sleep Amount =" + requiredSleepAmount + ", isAsleep=" + getIsAsleepString()
+				+ ", gender =" + getGenderString() + ", happiness Level =" + happinessLevel + "]";
 	}
 
 }

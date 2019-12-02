@@ -4,7 +4,7 @@ public class Animals {
 	private String name;
 	private String habitat;
 	private boolean hungry;
-	private int dailyFoodAmount;
+	private double FoodAmount;
 	private int requiredSleepAmount;
 	private boolean isAsleep;
 	private boolean gender; // make new class for gender
@@ -18,12 +18,12 @@ public class Animals {
 		this.happinessLevel = happinessLevel;
 	}
 
-	public Animals(String name, String habitat, boolean hungry, int dailyFoodAmount, int requiredSleepAmount,
+	public Animals(String name, String habitat, boolean hungry, int FoodAmount, int requiredSleepAmount,
 			boolean isAsleep, boolean gender, int happinessLevel) {
 		this.name = name;
 		this.habitat = habitat;
 		this.hungry = hungry;
-		this.dailyFoodAmount = dailyFoodAmount;
+		this.FoodAmount = FoodAmount;
 		this.requiredSleepAmount = requiredSleepAmount;
 		this.isAsleep = isAsleep;
 		this.gender = gender;
@@ -42,8 +42,8 @@ public class Animals {
 		return hungry;
 	}
 
-	public int getDailyFoodAmount() {
-		return dailyFoodAmount;
+	public double getFoodAmount() {
+		return FoodAmount;
 	}
 
 	public int getRequiredSleepAmount() {
@@ -74,8 +74,8 @@ public class Animals {
 		this.hungry = hungry;
 	}
 
-	public void setDailyFoodAmount(int dailyFoodAmount) {
-		this.dailyFoodAmount = dailyFoodAmount;
+	public void setFoodAmount(double FoodAmount) {
+		this.FoodAmount = FoodAmount;
 	}
 
 	public void setRequiredSleepAmount(int requiredSleepAmount) {
@@ -93,9 +93,13 @@ public class Animals {
 	public void setHappinessLevel(int happinessLevel) {
 		this.happinessLevel = happinessLevel;
 	}
+	
+	
 
-	public void stealFood(Animals anotherAnimal) { // interaction with other obj
-
+	public void stealFood(Animals anotherAnimal, double stolenFoodAmount) { // interaction with other obj
+		
+		double totalFood =
+		System.out.println(totalFood);
 	}
 
 	public void shareFood(Animals anotherAnimal) { // interaction with other obj
@@ -118,9 +122,9 @@ public class Animals {
 
 	}
 
-	public int increaseFoodAmount(int foodAmmount) {
-		dailyFoodAmount = dailyFoodAmount + foodAmmount;
-		return dailyFoodAmount;
+	public double  increaseFoodAmount(double foodAmmount) {
+		FoodAmount = FoodAmount + foodAmmount;
+		return FoodAmount;
 	}
 
 	public void hungry() {
@@ -136,10 +140,10 @@ public class Animals {
 		return isAsleep == IsAsleep.awake ? "Awake" : "Is sleeping";
 	}
 
-	@Override
+
 	public String toString() {
 		return "Animals [name =" + name + ", habitat = " + habitat + ", hungry = " + hungry + ", dailyFoodAmount = "
-				+ dailyFoodAmount + ", required Sleep Amount =" + requiredSleepAmount + ", isAsleep=" + getIsAsleepString()
+				+ FoodAmount + ", required Sleep Amount =" + requiredSleepAmount + ", isAsleep=" + getIsAsleepString()
 				+ ", gender =" + getGenderString() + ", happiness Level =" + happinessLevel + "]";
 	}
 

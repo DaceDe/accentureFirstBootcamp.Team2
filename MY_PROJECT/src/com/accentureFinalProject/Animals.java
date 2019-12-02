@@ -9,19 +9,18 @@ public class Animals {
 	private double foodAmount;
 	private int requiredSleepAmount;
 	private boolean isAsleep;
-	private boolean gender; // make new class for gender
+	private boolean gender; 
 	private int happinessLevel; // make new class for hapiness with max, min,
-								// increase, decrease methods and
-								// fields
-	private boolean foodPreferences; // increase, decrease methods and // fields
+	private boolean foodPreferences; 
 
-	public Animals(String name, String habitat, boolean gender,
+	public Animals(String name, String habitat,double foodAmount, boolean gender,
 			int happinessLevel, boolean foodPreferences) {
 		this.name = name;
 		this.habitat = habitat;
 		this.gender = gender;
 		this.happinessLevel = happinessLevel;
 		this.foodPreferences = foodPreferences;
+		this.foodAmount = foodAmount;
 	}
 
 	public Animals(String name, String habitat, boolean hungry,
@@ -104,13 +103,12 @@ public class Animals {
 	public void shareFood(Animals anotherAnimal) {
 	}
 
-	public void makeABaby(Animals anotherAnimal) { // interaction with otherobj
+	public void makeABaby(Animals anotherAnimal) { 
 	}
 
 	public void stealFood(Animals anotherAnimal, double stolenFoodAmount) { 
 		this.foodAmount+=stolenFoodAmount;
 		anotherAnimal.foodAmount -= stolenFoodAmount;
-		System.out.println(foodAmount);
 	}
 
 	public void startGame() {
@@ -143,7 +141,7 @@ public class Animals {
 			System.out.println("Sorry your animal doesn't eat " + input1);
 			break;
 		case "meat":
-			if (foodPreferences = false) {
+			if (foodPreferences == FoodPreferences.predator) {
 				System.out.println("You have fed the animal with " + input1
 						+ " and your animal now is " + happinessLevel);
 			} else {
@@ -153,7 +151,7 @@ public class Animals {
 			}
 			break;
 		case "grass":
-			if (foodPreferences = true) {
+			if (foodPreferences == FoodPreferences.herbivore) {
 				System.out.println("You have fed the animal with " + input1
 						+ " and your animal now is " + happinessLevel);
 			} else {

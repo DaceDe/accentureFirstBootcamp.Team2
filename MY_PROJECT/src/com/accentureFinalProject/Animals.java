@@ -100,17 +100,33 @@ public class Animals {
 	}
 
 	public void shareFood(Animals anotherAnimal) {
+		if (isAsleep = IsAsleep.isAsleep) {
+			System.out.println("Your animal is sleeping! Shhhh!");
+		}else {
+			
+		}
 	}
 
-	public void makeABaby(Animals anotherAnimal) { 
+	public void makeABaby(Animals anotherAnimal) {
+		if (isAsleep = IsAsleep.isAsleep) {
+			System.out.println("Your animal is sleeping! Shhhh!");
+		}else {
+			
+		}
 	}
 
 	public void stealFood(Animals anotherAnimal, double stolenFoodAmount) { 
+		if (isAsleep = IsAsleep.isAsleep) {
+			System.out.println("Your animal is sleeping! Shhhh!");
+		}else {
 		this.foodAmount+=stolenFoodAmount;
 		anotherAnimal.foodAmount -= stolenFoodAmount;
-	}
+	}}
 
 	public void startGame() {
+		if (isAsleep = IsAsleep.isAsleep) {
+			System.out.println("Your animal is sleeping! Shhhh!");
+		}else {
 		Scanner scanner = new Scanner(System.in);
 		System.out
 				.println("Hello, please choose what do you want to do with you animal: play, give food or change habitat: ");
@@ -128,9 +144,12 @@ public class Animals {
 		default:
 			System.out.println("Sorry your animal doesn't like " + input3);
 		}
-	}
+	}}
 
-	public void giveFood() { // scanner
+	public void giveFood() {
+		if (isAsleep = IsAsleep.isAsleep) {
+			System.out.println("Your animal is sleeping! Shhhh!");
+		}else {
 		Scanner scanner = new Scanner(System.in);
 		System.out
 				.println("What food do you want to give to your animal? Choose: ball, meat, grass.");
@@ -167,9 +186,12 @@ public class Animals {
 		default:
 			System.out.println("Sorry your animal doesn't eat " + input1 + happynessLevel.decreaseHappyness()+" happy" );
 		}
-	}
+	}}
 
-	public void play() { // scanner
+	public void play() { 
+		if (isAsleep = IsAsleep.isAsleep) {
+			System.out.println("Your animal is sleeping! Shhhh!");
+		}else {
 		Scanner scanner = new Scanner(System.in);
 		System.out
 				.println("How do you want to play? (Choose: ball, frisbee or staffed rabbit).");
@@ -189,7 +211,7 @@ public class Animals {
 			break;
 		default:
 			System.out.println("Sorry you cannot play with the " + input2 + happynessLevel.decreaseHappyness()+" happy");
-		}
+		}}
 	}
 
 	public void changeHabitat() { // scanner

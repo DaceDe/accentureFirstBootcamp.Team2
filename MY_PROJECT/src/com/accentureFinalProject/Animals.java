@@ -7,33 +7,32 @@ public class Animals {
 	private String habitat;
 	private boolean hungry;
 	private double foodAmount;
-	private int requiredSleepAmount;
 	private boolean isAsleep;
 	private boolean gender; 
-	private int happinessLevel; // make new class for hapiness with max, min,
-	private boolean foodPreferences; 
+	private HappinessLevel happynessLevel; // make new class for hapiness with max, min,
+	private boolean foodPreferences;
+	private double foodConsumed;
 
 	public Animals(String name, String habitat,double foodAmount, boolean gender,
-			int happinessLevel, boolean foodPreferences) {
+		 boolean foodPreferences, double foodConsumed) {
 		this.name = name;
 		this.habitat = habitat;
 		this.gender = gender;
-		this.happinessLevel = happinessLevel;
 		this.foodPreferences = foodPreferences;
 		this.foodAmount = foodAmount;
+		this.foodConsumed = foodConsumed;
+		
 	}
 
 	public Animals(String name, String habitat, boolean hungry,
-			int dailyFoodAmount, int requiredSleepAmount, boolean isAsleep,
+			int dailyFoodAmount, boolean isAsleep,
 			boolean gender, int happinessLevel) {
 		this.name = name;
 		this.habitat = habitat;
 		this.hungry = hungry;
-		this.foodAmount = dailyFoodAmount;
-		this.requiredSleepAmount = requiredSleepAmount;
+		this.foodAmount = foodAmount;
 		this.isAsleep = isAsleep;
 		this.gender = gender;
-		this.happinessLevel = happinessLevel;
 	}
 
 	public String getName() {
@@ -52,20 +51,12 @@ public class Animals {
 		return foodAmount;
 	}
 
-	public int getRequiredSleepAmount() {
-		return requiredSleepAmount;
-	}
-
 	public boolean isAsleep() {
 		return isAsleep;
 	}
 
 	public boolean isGender() {
 		return gender;
-	}
-
-	public int getHappinessLevel() {
-		return happinessLevel;
 	}
 
 	public void setName(String name) {
@@ -84,10 +75,6 @@ public class Animals {
 		this.foodAmount = foodAmount;
 	}
 
-	public void setRequiredSleepAmount(int requiredSleepAmount) {
-		this.requiredSleepAmount = requiredSleepAmount;
-	}
-
 	public void setAsleep(boolean isAsleep) {
 		this.isAsleep = isAsleep;
 	}
@@ -96,8 +83,20 @@ public class Animals {
 		this.gender = gender;
 	}
 
-	public void setHappinessLevel(int happinessLevel) {
-		this.happinessLevel = happinessLevel;
+	public boolean isFoodPreferences() {
+		return foodPreferences;
+	}
+
+	public double getFoodCousumed() {
+		return foodConsumed;
+	}
+
+	public void setFoodPreferences(boolean foodPreferences) {
+		this.foodPreferences = foodPreferences;
+	}
+
+	public void setFoodCousumed(double foodCousumed) {
+		this.foodConsumed = foodCousumed;
 	}
 
 	public void shareFood(Animals anotherAnimal) {
@@ -138,30 +137,35 @@ public class Animals {
 		String input1 = scanner.nextLine();
 		switch (input1) {
 		case "ball":
-			System.out.println("Sorry your animal doesn't eat " + input1);
+			System.out.println("Sorry your animal doesn't eat " + input1+ happynessLevel.decreaseHappyness()+" happy" );
+			foodConsumed = 0;
 			break;
 		case "meat":
 			if (foodPreferences == FoodPreferences.predator) {
 				System.out.println("You have fed the animal with " + input1
-						+ " and your animal now is " + happinessLevel);
+						+ " and your animal now is " + happynessLevel.increaseHappyness() +" happy");
+				foodConsumed = foodAmount;
 			} else {
 				System.out
 						.println("Sorry your animal is herbivore and doesn't eat "
-								+ input1 + ".");
+								+ input1 + happynessLevel.decreaseHappyness()+" happy" );
+						foodConsumed =0;
 			}
 			break;
 		case "grass":
 			if (foodPreferences == FoodPreferences.herbivore) {
 				System.out.println("You have fed the animal with " + input1
-						+ " and your animal now is " + happinessLevel);
+						+ " and your animal now is " + happynessLevel.increaseHappyness()+" happy"  );
+				foodConsumed = foodAmount;
 			} else {
 				System.out
 						.println("Sorry your animal is predator and doesn't eat "
-								+ input1 + ".");
+								+ input1 + happynessLevel.decreaseHappyness()+" happy.");
+				foodConsumed = 0;
 			}
 			break;
 		default:
-			System.out.println("Sorry your animal doesn't eat " + input1);
+			System.out.println("Sorry your animal doesn't eat " + input1 + happynessLevel.decreaseHappyness()+" happy" );
 		}
 	}
 
@@ -173,18 +177,18 @@ public class Animals {
 		switch (input2) {
 		case "ball":
 			System.out.println("You have played with the " + input2
-					+ " and your animal now is " + happinessLevel);
+					+ " and your animal now is " + happynessLevel.increaseHappyness() +" happy");
 			break;
 		case "frisbee":
 			System.out.println("You have played with the " + input2
-					+ " and your animal now is " + happinessLevel);
+					+ " and your animal now is " + happynessLevel.increaseHappyness()+" happy");
 			break;
 		case "staffed rabbit":
 			System.out.println("You have played with the " + input2
-					+ " and your animal now is " + happinessLevel);
+					+ " and your animal now is " + happynessLevel.increaseHappyness()+" happy");
 			break;
 		default:
-			System.out.println("Sorry you cannot play with the " + input2);
+			System.out.println("Sorry you cannot play with the " + input2 + happynessLevel.decreaseHappyness()+" happy");
 		}
 	}
 
@@ -201,6 +205,13 @@ public class Animals {
 	}
 
 	public void hungry() {
+		happynessLevel.resetHappyness();
+		foodConsumed = 0;
+		
+	}
+	public void putAsleep() {
+		isAsleep = IsAsleep.isAsleep;
+		
 	}
 
 	public String getGenderString() {
@@ -208,16 +219,15 @@ public class Animals {
 	}
 
 	public String getIsAsleepString() {
-		return isAsleep == IsAsleep.awake ? "Awake" : "Is sleeping";
+		return isAsleep == IsAsleep.awake ? ", Awake" : ", Is sleeping";
 	}
 
 	@Override
 	public String toString() {
 		return "Animals [name =" + name + ", habitat = " + habitat
-				+ ", hungry = " + hungry + ", dailyFoodAmount = " + foodAmount
-				+ ", required Sleep Amount =" + requiredSleepAmount
-				+ ", isAsleep=" + getIsAsleepString() + ", gender ="
-				+ getGenderString() + ", happiness Level =" + happinessLevel
+				+ ", hungry = " + hungry + ", FoodAmount = " + foodAmount
+				 + getIsAsleepString() + ", gender ="
+				+ getGenderString() + ", happiness Level =" + happynessLevel
 				+ "]";
 	}
 }

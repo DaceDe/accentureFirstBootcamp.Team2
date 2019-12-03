@@ -1,18 +1,35 @@
 package com.accentureFinalProject;
 
 public class HappinessLevel {
-	public static final int maxHappiness = 100;
-	public static final int minHappiness = 0;
-	public int happinessLevel;
+	private static final int maxHappyness = 4;
+	private static final int minHappyness = 0;
+	public int happynessLevel;
 
-	public int icreaseHappiness(int number) {
-		happinessLevel = happinessLevel + number;
-		return happinessLevel;
+	public int increaseHappyness() {
+		happynessLevel++;
+		if (happynessLevel > maxHappyness) {
+			happynessLevel = maxHappyness;
+		}
+		return happynessLevel;
 	}
 
-	public int decreaseHappiness(int number) {
-		happinessLevel = happinessLevel - number;
-		return happinessLevel;
+	public int decreaseHappyness() {
+		
+		happynessLevel--;
+		if (happynessLevel < minHappyness) {
+			happynessLevel = minHappyness;
+		}
+		return happynessLevel;
+	}
+	
+	public int resetHappyness() {
+		happynessLevel = minHappyness;
+		return happynessLevel;
+	}
+	
+	public int setmaxHappyness() {
+		happynessLevel = maxHappyness;
+		return happynessLevel;
 	}
 
 }

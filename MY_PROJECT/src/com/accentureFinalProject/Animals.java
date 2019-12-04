@@ -117,6 +117,10 @@ public class Animals {
 		}
 		
 	}
+	
+	public boolean isCompatibleForLove() {
+		return true;
+	}
 
 	public void stealFood(Animals anotherAnimal, double stolenFoodAmount) { 
 		if (isAsleep = IsAsleep.isAsleep) {

@@ -31,4 +31,9 @@ public class HappinessLevel {
 		return happynessLevel == maxHappyness;
 	}
 
+	public int getHappynessLevel() {
+		return happynessLevel;
+	}
+
+ 
 }

@@ -3,7 +3,7 @@ package com.accentureFinalProject;
 public class HappinessLevel {
 	private static final int maxHappyness = 4;
 	private static final int minHappyness = 0;
-	public int happynessLevel;
+	public int happynessLevel = 0;
 
 	public int increase() {
 		happynessLevel++;

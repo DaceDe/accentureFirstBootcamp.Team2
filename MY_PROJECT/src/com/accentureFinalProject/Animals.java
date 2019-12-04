@@ -16,25 +16,16 @@ public class Animals {
 	static Scanner scanner = new Scanner(System.in);
 
 	public Animals(String name, String habitat, double foodAmount,
-			boolean gender, boolean foodPreferences, double foodConsumed) {
+			boolean gender, boolean foodPreferences, double foodConsumed,
+			int happynessLevel) {
 		this.name = name;
 		this.habitat = habitat;
 		this.gender = gender;
 		this.foodPreferences = foodPreferences;
 		this.foodAmount = foodAmount;
 		this.foodConsumed = foodConsumed;
+		this.happynessLevel = new HappinessLevel();
 
-	}
-
-	public Animals(String name, String habitat, boolean hungry,
-			int dailyFoodAmount, boolean isAsleep, boolean gender,
-			int happinessLevel) {
-		this.name = name;
-		this.habitat = habitat;
-		this.hungry = hungry;
-		this.foodAmount = foodAmount;
-		this.isAsleep = isAsleep;
-		this.gender = gender;
 	}
 
 	public String getName() {
@@ -43,10 +34,6 @@ public class Animals {
 
 	public String getHabitat() {
 		return habitat;
-	}
-
-	public boolean isHungry() {
-		return hungry;
 	}
 
 	public double getFoodAmount() {
@@ -155,26 +142,74 @@ public class Animals {
 	}
 
 	public void startGame() {
-		if (isAsleep = IsAsleep.isAsleep) {
-			System.out.println("Your animal is sleeping! Shhhh!");
-		} else {
+		System.out
+				.println("Hello, welcome to the calmest game ever!\nYour goal is to make as much babies as possible and in order to do that, your animals should have level 4 of happyness. \nTo start, please choose animal you want to play with:\nEnter: \n (1) for monkey, \n (2) for giraffe, \n (3) for tiger.");
+		String input5 = scanner.nextLine();
+		switch (input5) {
+		case "1":
+			System.out.println("You have chosen to play with monkey");
+			break;
+		case "2":
+			System.out.println("You have chosen to play with giraffe");
+			break;
+		case "3":
+			System.out.println("You have chosen to play with tiger");
+			break;
+		}
+
+		System.out
+				.println("Please choose what do you want to do with you animal: \n  Enter: \n (1) for  playing, \n (2) for giving food, \n (3) for changing habitat,\n (4) for stealing food from another animal, \n (5) for sharing food with another animal \n (6) for making babies, \n (7) for choosing another animal. ");
+		String input3 = scanner.nextLine();
+		switch (input3) {
+		case "1":
+			play();
+			break;
+		case "2":
+			giveFood();
+			break;
+		case "3":
+			changeHabitat();
+			break;
+		case "4":
 
 			System.out
-					.println("Hello, please choose what do you want to do with you animal: play, give food or change habitat: ");
-			String input3 = scanner.nextLine();
-			switch (input3) {
-			case "play":
-				play();
-				break;
-			case "give food":
-				giveFood();
-				break;
-			case "change habitat":
-				changeHabitat();
-				break;
-			default:
-				System.out.println("Sorry your animal doesn't like " + input3);
+					.println("Please choose animal you want to steal food from: \n Enter: \n (1) for \n (2)"); // add
+																												// values
+			String input4 = scanner.nextLine();
+			System.out.println("How much food do you want to steal? ");//add loop
+			int input6 = scanner.nextInt();
+			if (this.foodAmount < input6) {
+				System.out.println("You cannot steal more than animal has");
+			} else {
+				System.out.println("You can steal " + input6);
+
 			}
+
+			// from
+			// array
+			// list
+			// stealFood(Animals anotherAnimal, double stolenFoodAmount);
+			break;
+		case "5":
+			System.out
+					.println("Please choose animal you want to share food with: \n Enter: \n (1) for \n (2)"); // add
+																												// values
+																												// from
+																												// array
+																												// list
+			// stealFood(anotherAnimal, stolenFoodAmount);
+			break;
+		case "6":
+			System.out
+					.println("Please choose animal you want to make babies with: \n Enter: \n (1) for \n (2)");
+			// makeABaby(Animals anotherAnimal);
+			break;
+		case "7":
+			System.out
+					.println("Please choose the animal: \n Enter: \n (1) for \n (2) for ");
+
+		default:
+			System.out.println("Sorry your animal doesn't like " + input3);
 		}
 	}
 
@@ -184,47 +219,45 @@ public class Animals {
 		} else {
 
 			System.out
-					.println("What food do you want to give to your animal? Choose: ball, meat, grass.");
+					.println("What food do you want to give to your animal? \n Enter: \n (1) ball, \n (2) meat, \n (3) grass.");
 			String input1 = scanner.nextLine();
 			switch (input1) {
-			case "ball":
-				System.out.println("Sorry your animal doesn't eat " + input1
-						+ happynessLevel.decrease() + " happy");
+			case "1":
+				System.out
+						.println("Sorry your animal doesn't eat ball and now is level "
+								+ happynessLevel.decrease() + " happy");
 				foodConsumed = 0;
 				break;
-			case "meat":
+			case "2":
 				if (foodPreferences == FoodPreferences.predator) {
-					System.out.println("You have fed the animal with " + input1
-							+ " and your animal now is "
-							+ happynessLevel.increase() + " happy");
+					System.out
+							.println("You have fed the animal with meat and your animal now is "
+									+ happynessLevel.increase() + " happy.");
 					foodConsumed = foodAmount;
 				} else {
 					System.out
-							.println("Sorry your animal is herbivore and doesn't eat "
-									+ input1
-									+ happynessLevel.decrease()
-									+ " happy");
+							.println("Sorry your animal is herbivore and doesn't eat meat and now is level "
+									+ happynessLevel.decrease() + " happy.");
 					foodConsumed = 0;
 				}
 				break;
-			case "grass":
+			case "3":
 				if (foodPreferences == FoodPreferences.herbivore) {
-					System.out.println("You have fed the animal with " + input1
-							+ " and your animal now is "
-							+ happynessLevel.increase() + " happy");
+					System.out
+							.println("You have fed the animal with grass and your animal now is "
+									+ happynessLevel.increase() + " happy.");
 					foodConsumed = foodAmount;
 				} else {
 					System.out
-							.println("Sorry your animal is predator and doesn't eat "
-									+ input1
-									+ happynessLevel.decrease()
-									+ " happy.");
+							.println("Sorry your animal is predator and doesn't eat grass and your animal now is  "
+									+ happynessLevel.decrease() + " happy.");
 					foodConsumed = 0;
 				}
 				break;
 			default:
 				System.out.println("Sorry your animal doesn't eat " + input1
-						+ happynessLevel.decrease() + " happy");
+						+ " and your animal now is "
+						+ happynessLevel.decrease() + " happy.");
 			}
 		}
 	}
@@ -235,23 +268,23 @@ public class Animals {
 		} else {
 
 			System.out
-					.println("How do you want to play? (Choose: ball, frisbee or staffed rabbit).");
+					.println("How do you want to play? \n Enter: \n (1) for playing with ball, \n (2) for playing with frisbee, \n (3) for playing with staffed rabbit.");
 			String input2 = scanner.nextLine();
 			switch (input2) {
-			case "ball":
-				System.out.println("You have played with the " + input2
-						+ " and your animal now is "
-						+ happynessLevel.increase() + " happy");
+			case "1":
+				System.out
+						.println("You have played with the ball and your animal now is level "
+								+ happynessLevel.increase() + " happy");
 				break;
-			case "frisbee":
-				System.out.println("You have played with the " + input2
-						+ " and your animal now is "
-						+ happynessLevel.increase() + " happy");
+			case "2":
+				System.out
+						.println("You have played with the frisbee and your animal now is level "
+								+ happynessLevel.increase() + " happy");
 				break;
-			case "staffed rabbit":
-				System.out.println("You have played with the " + input2
-						+ " and your animal now is "
-						+ happynessLevel.increase() + " happy");
+			case "3":
+				System.out
+						.println("You have played with staffed raabbit and your animal now is level "
+								+ happynessLevel.increase() + " happy");
 				break;
 			default:
 				System.out.println("Sorry you cannot play with the " + input2
@@ -267,21 +300,22 @@ public class Animals {
 		System.out.println("Animal now lives in " + input3);
 	}
 
-	public double increaseFoodAmount(double foodAmmount) {
-		foodAmount = foodAmount + foodAmmount;
-		return foodAmount;
-	}
+	// public double increaseFoodAmount(double foodAmmount) {
+	// foodAmount = foodAmount + foodAmmount;
+	// return foodAmount;
+	// }
 
-	public void hungry() {
-		happynessLevel.reset();
+	public String hungry() {
 		foodConsumed = 0;
+		happynessLevel.reset();
+		return "your animal is hungry!";
 
 	}
 
-	public void putAsleep() {
-		isAsleep = IsAsleep.isAsleep;
+	// public void putAsleep() {
+	// isAsleep = IsAsleep.isAsleep;
 
-	}
+	// }
 
 	public String getGenderString() {
 		return gender == Gender.female ? "FEMALE" : "MALE";
@@ -291,14 +325,26 @@ public class Animals {
 		return isAsleep == IsAsleep.awake ? ", Awake" : ", Is sleeping";
 	}
 
-	//public String GetHappynessLevelString(){
-	//	return System.out.println("your animal`s happyness level is " + Integer.toString(happynessLevel.getHappynessLevel()));
-	//}
-	
-	public String toString() {
-		return "Animals [name =" + name + ", habitat = " + habitat
-				+ ", hungry = " + hungry +" food consumed = "+ foodConsumed +", FoodAmount = " + foodAmount
-				+ getIsAsleepString() + ", gender =" + getGenderString()
-				+ ", happiness Level = " + happynessLevel + "]";
+	public String getfoodPreferencesString() {
+		return foodPreferences == FoodPreferences.herbivore ? "herbivore"
+				: "predator";
 	}
+
+	@Override
+	public String toString() {
+		return "Animals [name=" + name + ", habitat=" + habitat
+				+ ", foodAmount=" + foodAmount + ", foodConsumed="
+				+ foodConsumed + ", getFoodCousumed()=" + getFoodCousumed()
+				+ ", hungry()=" + hungry() + ", getGenderString()="
+				+ getGenderString() + ", getIsAsleepString()="
+				+ getIsAsleepString() + ", getfoodPreferencesString()="
+				+ getfoodPreferencesString() + "]";
+	}
+
+	// public String GetHappynessLevelString(){
+	// return System.out.println("your animal`s happyness level is " +
+	// Integer.toString(happynessLevel.getHappynessLevel()));
+	// }
+
 }
+

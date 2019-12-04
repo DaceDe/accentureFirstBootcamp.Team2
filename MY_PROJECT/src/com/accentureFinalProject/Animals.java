@@ -110,9 +110,12 @@ public class Animals {
 	public void makeABaby(Animals anotherAnimal) {
 		if (isAsleep = IsAsleep.isAsleep) {
 			System.out.println("Your animal is sleeping! Shhhh!");
-		}else {
+		return;
+		}
+		if (this.happynessLevel.isMax() && anotherAnimal.happynessLevel.isMax()) {
 			
 		}
+		
 	}
 
 	public void stealFood(Animals anotherAnimal, double stolenFoodAmount) { 
@@ -156,35 +159,35 @@ public class Animals {
 		String input1 = scanner.nextLine();
 		switch (input1) {
 		case "ball":
-			System.out.println("Sorry your animal doesn't eat " + input1+ happynessLevel.decreaseHappyness()+" happy" );
+			System.out.println("Sorry your animal doesn't eat " + input1+ happynessLevel.decrease()+" happy" );
 			foodConsumed = 0;
 			break;
 		case "meat":
 			if (foodPreferences == FoodPreferences.predator) {
 				System.out.println("You have fed the animal with " + input1
-						+ " and your animal now is " + happynessLevel.increaseHappyness() +" happy");
+						+ " and your animal now is " + happynessLevel.increase() +" happy");
 				foodConsumed = foodAmount;
 			} else {
 				System.out
 						.println("Sorry your animal is herbivore and doesn't eat "
-								+ input1 + happynessLevel.decreaseHappyness()+" happy" );
+								+ input1 + happynessLevel.decrease()+" happy" );
 						foodConsumed =0;
 			}
 			break;
 		case "grass":
 			if (foodPreferences == FoodPreferences.herbivore) {
 				System.out.println("You have fed the animal with " + input1
-						+ " and your animal now is " + happynessLevel.increaseHappyness()+" happy"  );
+						+ " and your animal now is " + happynessLevel.increase()+" happy"  );
 				foodConsumed = foodAmount;
 			} else {
 				System.out
 						.println("Sorry your animal is predator and doesn't eat "
-								+ input1 + happynessLevel.decreaseHappyness()+" happy.");
+								+ input1 + happynessLevel.decrease()+" happy.");
 				foodConsumed = 0;
 			}
 			break;
 		default:
-			System.out.println("Sorry your animal doesn't eat " + input1 + happynessLevel.decreaseHappyness()+" happy" );
+			System.out.println("Sorry your animal doesn't eat " + input1 + happynessLevel.decrease()+" happy" );
 		}
 	}}
 
@@ -199,18 +202,18 @@ public class Animals {
 		switch (input2) {
 		case "ball":
 			System.out.println("You have played with the " + input2
-					+ " and your animal now is " + happynessLevel.increaseHappyness() +" happy");
+					+ " and your animal now is " + happynessLevel.increase() +" happy");
 			break;
 		case "frisbee":
 			System.out.println("You have played with the " + input2
-					+ " and your animal now is " + happynessLevel.increaseHappyness()+" happy");
+					+ " and your animal now is " + happynessLevel.increase()+" happy");
 			break;
 		case "staffed rabbit":
 			System.out.println("You have played with the " + input2
-					+ " and your animal now is " + happynessLevel.increaseHappyness()+" happy");
+					+ " and your animal now is " + happynessLevel.increase()+" happy");
 			break;
 		default:
-			System.out.println("Sorry you cannot play with the " + input2 + happynessLevel.decreaseHappyness()+" happy");
+			System.out.println("Sorry you cannot play with the " + input2 + happynessLevel.decrease()+" happy");
 		}}
 	}
 
@@ -227,7 +230,7 @@ public class Animals {
 	}
 
 	public void hungry() {
-		happynessLevel.resetHappyness();
+		happynessLevel.reset();
 		foodConsumed = 0;
 		
 	}

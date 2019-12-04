@@ -5,7 +5,7 @@ public class HappinessLevel {
 	private static final int minHappyness = 0;
 	public int happynessLevel;
 
-	public int increaseHappyness() {
+	public int increase() {
 		happynessLevel++;
 		if (happynessLevel > maxHappyness) {
 			happynessLevel = maxHappyness;
@@ -13,23 +13,22 @@ public class HappinessLevel {
 		return happynessLevel;
 	}
 
-	public int decreaseHappyness() {
-		
+	public int decrease() {
+
 		happynessLevel--;
 		if (happynessLevel < minHappyness) {
 			happynessLevel = minHappyness;
 		}
 		return happynessLevel;
 	}
-	
-	public int resetHappyness() {
+
+	public int reset() {
 		happynessLevel = minHappyness;
 		return happynessLevel;
 	}
-	
-	public int setmaxHappyness() {
-		happynessLevel = maxHappyness;
-		return happynessLevel;
+
+	public boolean isMax() {
+		return happynessLevel == maxHappyness;
 	}
 
 }

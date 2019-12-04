@@ -8,25 +8,24 @@ public class Animals {
 	private boolean hungry;
 	private double foodAmount;
 	private boolean isAsleep;
-	private boolean gender; 
+	private boolean gender;
 	private HappinessLevel happynessLevel; // make new class for hapiness with max, min,
 	private boolean foodPreferences;
 	private double foodConsumed;
 
-	public Animals(String name, String habitat,double foodAmount, boolean gender,
-		 boolean foodPreferences, double foodConsumed) {
+	public Animals(String name, String habitat, double foodAmount, boolean gender, boolean foodPreferences,
+			double foodConsumed) {
 		this.name = name;
 		this.habitat = habitat;
 		this.gender = gender;
 		this.foodPreferences = foodPreferences;
 		this.foodAmount = foodAmount;
 		this.foodConsumed = foodConsumed;
-		
+
 	}
 
-	public Animals(String name, String habitat, boolean hungry,
-			int dailyFoodAmount, boolean isAsleep,
-			boolean gender, int happinessLevel) {
+	public Animals(String name, String habitat, boolean hungry, int dailyFoodAmount, boolean isAsleep, boolean gender,
+			int happinessLevel) {
 		this.name = name;
 		this.habitat = habitat;
 		this.hungry = hungry;
@@ -102,123 +101,136 @@ public class Animals {
 	public void shareFood(Animals anotherAnimal) {
 		if (isAsleep = IsAsleep.isAsleep) {
 			System.out.println("Your animal is sleeping! Shhhh!");
-		}else {
-			
+		} else {
+
 		}
 	}
 
 	public void makeABaby(Animals anotherAnimal) {
 		if (isAsleep = IsAsleep.isAsleep) {
 			System.out.println("Your animal is sleeping! Shhhh!");
-		return;
+			return;
 		}
 		if (this.happynessLevel.isMax() && anotherAnimal.happynessLevel.isMax()) {
-			
+
 		}
-		
+
 	}
 	
-	public boolean isCompatibleForLove() {
-		return true;
+	private boolean isCompatibleForLove2(Animals anotherAnimal) {
+		if (this.gender == Gender.female) {
+			return anotherAnimal.gender == Gender.male;
+		} else {
+			return anotherAnimal.gender == Gender.female;
+		}
 	}
 
-	public void stealFood(Animals anotherAnimal, double stolenFoodAmount) { 
+	private boolean isCompatibleForLove(Animals anotherAnimal) {
+		if (this.gender == Gender.female && anotherAnimal.gender == Gender.male
+				|| this.gender == Gender.male && anotherAnimal.gender == Gender.female) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void stealFood(Animals anotherAnimal, double stolenFoodAmount) {
 		if (isAsleep = IsAsleep.isAsleep) {
 			System.out.println("Your animal is sleeping! Shhhh!");
-		}else {
-		this.foodAmount+=stolenFoodAmount;
-		anotherAnimal.foodAmount -= stolenFoodAmount;
-	}}
+		} else {
+			this.foodAmount += stolenFoodAmount;
+			anotherAnimal.foodAmount -= stolenFoodAmount;
+		}
+	}
 
 	public void startGame() {
 		if (isAsleep = IsAsleep.isAsleep) {
 			System.out.println("Your animal is sleeping! Shhhh!");
-		}else {
-		Scanner scanner = new Scanner(System.in);
-		System.out
-				.println("Hello, please choose what do you want to do with you animal: play, give food or change habitat: ");
-		String input3 = scanner.nextLine();
-		switch (input3) {
-		case "play":
-			play();
-			break;
-		case "give food":
-			giveFood();
-			break;
-		case "change habitat":
-			changeHabitat();
-			break;
-		default:
-			System.out.println("Sorry your animal doesn't like " + input3);
+		} else {
+			Scanner scanner = new Scanner(System.in);
+			System.out.println(
+					"Hello, please choose what do you want to do with you animal: play, give food or change habitat: ");
+			String input3 = scanner.nextLine();
+			switch (input3) {
+			case "play":
+				play();
+				break;
+			case "give food":
+				giveFood();
+				break;
+			case "change habitat":
+				changeHabitat();
+				break;
+			default:
+				System.out.println("Sorry your animal doesn't like " + input3);
+			}
 		}
-	}}
+	}
 
 	public void giveFood() {
 		if (isAsleep = IsAsleep.isAsleep) {
 			System.out.println("Your animal is sleeping! Shhhh!");
-		}else {
-		Scanner scanner = new Scanner(System.in);
-		System.out
-				.println("What food do you want to give to your animal? Choose: ball, meat, grass.");
-		String input1 = scanner.nextLine();
-		switch (input1) {
-		case "ball":
-			System.out.println("Sorry your animal doesn't eat " + input1+ happynessLevel.decrease()+" happy" );
-			foodConsumed = 0;
-			break;
-		case "meat":
-			if (foodPreferences == FoodPreferences.predator) {
-				System.out.println("You have fed the animal with " + input1
-						+ " and your animal now is " + happynessLevel.increase() +" happy");
-				foodConsumed = foodAmount;
-			} else {
-				System.out
-						.println("Sorry your animal is herbivore and doesn't eat "
-								+ input1 + happynessLevel.decrease()+" happy" );
-						foodConsumed =0;
-			}
-			break;
-		case "grass":
-			if (foodPreferences == FoodPreferences.herbivore) {
-				System.out.println("You have fed the animal with " + input1
-						+ " and your animal now is " + happynessLevel.increase()+" happy"  );
-				foodConsumed = foodAmount;
-			} else {
-				System.out
-						.println("Sorry your animal is predator and doesn't eat "
-								+ input1 + happynessLevel.decrease()+" happy.");
+		} else {
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("What food do you want to give to your animal? Choose: ball, meat, grass.");
+			String input1 = scanner.nextLine();
+			switch (input1) {
+			case "ball":
+				System.out.println("Sorry your animal doesn't eat " + input1 + happynessLevel.decrease() + " happy");
 				foodConsumed = 0;
+				break;
+			case "meat":
+				if (foodPreferences == FoodPreferences.predator) {
+					System.out.println("You have fed the animal with " + input1 + " and your animal now is "
+							+ happynessLevel.increase() + " happy");
+					foodConsumed = foodAmount;
+				} else {
+					System.out.println("Sorry your animal is herbivore and doesn't eat " + input1
+							+ happynessLevel.decrease() + " happy");
+					foodConsumed = 0;
+				}
+				break;
+			case "grass":
+				if (foodPreferences == FoodPreferences.herbivore) {
+					System.out.println("You have fed the animal with " + input1 + " and your animal now is "
+							+ happynessLevel.increase() + " happy");
+					foodConsumed = foodAmount;
+				} else {
+					System.out.println("Sorry your animal is predator and doesn't eat " + input1
+							+ happynessLevel.decrease() + " happy.");
+					foodConsumed = 0;
+				}
+				break;
+			default:
+				System.out.println("Sorry your animal doesn't eat " + input1 + happynessLevel.decrease() + " happy");
 			}
-			break;
-		default:
-			System.out.println("Sorry your animal doesn't eat " + input1 + happynessLevel.decrease()+" happy" );
 		}
-	}}
+	}
 
-	public void play() { 
+	public void play() {
 		if (isAsleep = IsAsleep.isAsleep) {
 			System.out.println("Your animal is sleeping! Shhhh!");
-		}else {
-		Scanner scanner = new Scanner(System.in);
-		System.out
-				.println("How do you want to play? (Choose: ball, frisbee or staffed rabbit).");
-		String input2 = scanner.nextLine();
-		switch (input2) {
-		case "ball":
-			System.out.println("You have played with the " + input2
-					+ " and your animal now is " + happynessLevel.increase() +" happy");
-			break;
-		case "frisbee":
-			System.out.println("You have played with the " + input2
-					+ " and your animal now is " + happynessLevel.increase()+" happy");
-			break;
-		case "staffed rabbit":
-			System.out.println("You have played with the " + input2
-					+ " and your animal now is " + happynessLevel.increase()+" happy");
-			break;
-		default:
-			System.out.println("Sorry you cannot play with the " + input2 + happynessLevel.decrease()+" happy");
-		}}
+		} else {
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("How do you want to play? (Choose: ball, frisbee or staffed rabbit).");
+			String input2 = scanner.nextLine();
+			switch (input2) {
+			case "ball":
+				System.out.println("You have played with the " + input2 + " and your animal now is "
+						+ happynessLevel.increase() + " happy");
+				break;
+			case "frisbee":
+				System.out.println("You have played with the " + input2 + " and your animal now is "
+						+ happynessLevel.increase() + " happy");
+				break;
+			case "staffed rabbit":
+				System.out.println("You have played with the " + input2 + " and your animal now is "
+						+ happynessLevel.increase() + " happy");
+				break;
+			default:
+				System.out.println("Sorry you cannot play with the " + input2 + happynessLevel.decrease() + " happy");
+			}
+		}
 	}
 
 	public void changeHabitat() { // scanner
@@ -236,11 +248,12 @@ public class Animals {
 	public void hungry() {
 		happynessLevel.reset();
 		foodConsumed = 0;
-		
+
 	}
+
 	public void putAsleep() {
 		isAsleep = IsAsleep.isAsleep;
-		
+
 	}
 
 	public String getGenderString() {
@@ -253,10 +266,8 @@ public class Animals {
 
 	@Override
 	public String toString() {
-		return "Animals [name =" + name + ", habitat = " + habitat
-				+ ", hungry = " + hungry + ", FoodAmount = " + foodAmount
-				 + getIsAsleepString() + ", gender ="
-				+ getGenderString() + ", happiness Level =" + happynessLevel
-				+ "]";
+		return "Animals [name =" + name + ", habitat = " + habitat + ", hungry = " + hungry + ", FoodAmount = "
+				+ foodAmount + getIsAsleepString() + ", gender =" + getGenderString() + ", happiness Level ="
+				+ happynessLevel + "]";
 	}
 }

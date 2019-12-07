@@ -14,11 +14,14 @@ public class AnimalsApp {
 		
 
 		System.out.println("Hello, welcome to the calmest game ever!\n"
-				+ "Your goal is to make as much babies as possible and in order to do that, your animals should have level 4 of happyness.\n "
+				+ "Your goal is to make a baby and in order to do that, your animals should have level 4 of happyness.\n "
 				+ "You have three animals:\n"
 				+ monkey.toString()+
 				giraffe.toString()+
 				tiger.toString());
+		System.out.println("Please, enter Your name!");
+		String input = scanner.nextLine();
+		System.out.println("Your name is "+input);
 		boolean babyMade = false;
 		while (!babyMade) {
 			babyMade = startGame();

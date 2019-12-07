@@ -74,7 +74,9 @@ public class Animal {
 			int toShare = this.foodAmount / 2;
 			anotherAnimal.foodAmount += toShare;
 			this.foodAmount -= toShare;
-			System.out.println(name + " has shared " + toShare + " with " + anotherAnimal.name);
+			System.out.println(this.name + " has shared " + toShare + " with " + anotherAnimal.name +
+					" and now has " + this.happynessLevel.increase() + " level happy.\n"
+					+ anotherAnimal.name + " now has "+ anotherAnimal.happynessLevel.increase() + " level happy");
 		}
 	}
 
@@ -85,7 +87,7 @@ public class Animal {
 		}
 		if (this.happynessLevel.isMax() && anotherAnimal.happynessLevel.isMax()
 				&& isCompatibleForLove(anotherAnimal) == true) {
-			System.out.println("Congratulations! Your animals have a baby!");
+			System.out.println("Congratulations! Your animals have a baby! You won!");
 			return true;
 		} else {
 			System.out.println("Your animals can't have a baby!");
@@ -114,7 +116,9 @@ public class Animal {
 			this.foodAmount += anotherAnimal.foodAmount;
 			anotherAnimal.foodAmount = 0;
 			System.out.println(name + " has stolen all the food from " + anotherAnimal.name + " and now has "
-					+ this.foodAmount + " food");
+					+ this.foodAmount + " food" + " and " + this.happynessLevel.increase() + " level happy.\n" +
+					anotherAnimal.name + " now has "
+					+ anotherAnimal.foodAmount + " food" + " and " + anotherAnimal.happynessLevel.decrease() + " level happy." );
 		}
 	}
 
@@ -159,7 +163,7 @@ public class Animal {
 		}
 	}
 
-	public void changeHabitat(String habitat) { // scanner
+	public void changeHabitat(String habitat) { 
 		this.habitat = habitat;
 		System.out.println("Animal now lives in " + habitat);
 	}
